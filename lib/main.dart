@@ -20,7 +20,7 @@ class IslamicApp extends StatelessWidget {
       routes: {
         SplashView.routeName: (context) => const SplashView(),
         LayOutView.routeName: (context) => const LayOutView(),
-        QuranDetailsView.routeName: (context) => const QuranDetailsView()
+        QuranDetailsView.routeName: (context) => QuranDetailsView()
       },
     );
   }
