@@ -59,7 +59,7 @@ class _QuranDetailsViewState extends State<QuranDetailsView> {
                 child: ListView.builder(
                   itemBuilder: (context, index) => Text(
                     textAlign: TextAlign.center,
-                    '(${index + 1}) ${versesList[index]}',
+                    '(${index + 1}) ${versesList[index]} ',
                     style: theme.textTheme.bodyMedium?.copyWith(height: 1.8),
                   ),
                   itemCount: versesList.length,

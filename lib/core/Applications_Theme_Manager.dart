@@ -42,7 +42,6 @@ class ApplicationsThemeManager {
             fontWeight: FontWeight.w400,
             fontFamily: 'ElMessiri'),
       ),
-      dividerTheme: const DividerThemeData(
-        color: primaryColor,
-      ));
+      dividerTheme:
+          const DividerThemeData(color: primaryColor, thickness: 4, space: 10));
 }

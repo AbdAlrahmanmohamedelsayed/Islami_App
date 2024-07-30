@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:islamic_app/LayOut/layout.dart';
+import 'package:islamic_app/modules/LayOut/layout.dart';
 
 class SplashView extends StatefulWidget {
   static const String routeName = '/';
