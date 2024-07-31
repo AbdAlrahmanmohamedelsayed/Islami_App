@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:islamic_app/modules/hadeth/hadithView.dart';
 
 class HadethView extends StatefulWidget {
-  HadethView({super.key});
+  const HadethView({super.key});
 
   @override
   State<HadethView> createState() => _HadethViewState();
@@ -12,9 +12,9 @@ class HadethView extends StatefulWidget {
 class _HadethViewState extends State<HadethView> {
   @override
   Widget build(BuildContext context) {
+    if (hadithList.isEmpty) loadHadithData();
     var theme = Theme.of(context);
-    // if (hadithList.isEmpty)
-    loadHadithData();
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
@@ -62,11 +62,11 @@ class _HadethViewState extends State<HadethView> {
       singleHadeth = allHadethDataList[i].trim();
       int titleLength = singleHadeth.indexOf('\n');
       String title = singleHadeth.substring(0, titleLength);
+      setState(() {});
       String bodyHadith = singleHadeth.substring(titleLength + 1);
       HadeitData hadeitData = HadeitData(title: title, body: bodyHadith);
       hadithList.add(hadeitData);
     }
-    setState(() {});
   }
 }
 
