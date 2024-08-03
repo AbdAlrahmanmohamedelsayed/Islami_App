@@ -17,7 +17,7 @@ class RadioView extends StatelessWidget {
         ),
         Align(
           alignment: Alignment.center,
-          child: Text('إذاعة القرآن الكريم ', style: theme.bodyMedium),
+          child: Text('إذاعة القرآن الكريم ', style: theme.bodyLarge),
         ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,

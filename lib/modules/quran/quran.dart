@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/settings_provider.dart';
 import 'package:islamic_app/modules/quran/quran_details_view.dart';
 import 'package:islamic_app/modules/quran/widgets/sura_data_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+// import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore: must_be_immutable
 class QuranView extends StatelessWidget {
@@ -127,17 +129,18 @@ class QuranView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
-    var lang = AppLocalizations.of(context)!;
+    var provider = Provider.of<SettingsProvider>(context);
+    // var lang = AppLocalizations.of(context)!;
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       children: [
-        Align(
-          alignment: Alignment.center,
-          child: Text(
-            'القران الكريم ',
-            style: theme.textTheme.bodyLarge,
-          ),
-        ),
+        // Align(
+        //   alignment: Alignment.center,
+        //   child: Text(
+        //     'القرآن الكريم ',
+        //     style: theme.textTheme.bodyLarge,
+        //   ),
+        // ),
         Image.asset(
           'assets/images/qur2an_screen_logo.png',
         ),
@@ -158,7 +161,9 @@ class QuranView extends StatelessWidget {
               height: 60,
               child: VerticalDivider(
                 thickness: 3,
-                color: theme.primaryColor,
+                color: provider.isDark()
+                    ? theme.primaryColorDark
+                    : theme.primaryColor,
               ),
             ),
             Expanded(

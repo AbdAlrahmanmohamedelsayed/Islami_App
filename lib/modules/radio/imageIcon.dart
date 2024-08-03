@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../core/settings_provider.dart';
 
 // ignore: must_be_immutable
 class ImageIconCustom extends StatelessWidget {
@@ -7,7 +10,13 @@ class ImageIconCustom extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var theme = Theme.of(context);
+    var provider = Provider.of<SettingsProvider>(context);
     return ImageIcon(
-        size: 40, color: const Color(0xffB7935F), AssetImage(iamgePath));
+        size: 44,
+        color: provider.isDark()
+            ? theme.primaryColorDark
+            : const Color(0xffB7935F),
+        AssetImage(iamgePath));
   }
 }

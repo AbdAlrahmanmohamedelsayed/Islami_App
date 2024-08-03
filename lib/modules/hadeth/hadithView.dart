@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/settings_provider.dart';
 import 'package:islamic_app/modules/hadeth/hadeth.dart';
+import 'package:provider/provider.dart';
 
 class HadithviewDetalis extends StatelessWidget {
   static String routeName = 'HadithviewDetalis';
@@ -9,14 +11,17 @@ class HadithviewDetalis extends StatelessWidget {
   Widget build(BuildContext context) {
     var data = ModalRoute.of(context)?.settings.arguments as HadeitData;
     var theme = Theme.of(context);
+    var provider = Provider.of<SettingsProvider>(context);
     return Container(
-      decoration: const BoxDecoration(
+      decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/images/background.png'),
+              image: AssetImage(provider.getHomeBackGround()),
               fit: BoxFit.cover)),
       child: Scaffold(
         appBar: AppBar(
           title: const Text('إسلامي'),
+          leading: BackButton(
+              color: provider.isDark() ? theme.primaryColorDark : Colors.black),
         ),
         body: Container(
           margin: const EdgeInsets.only(
@@ -28,23 +33,30 @@ class HadithviewDetalis extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 10),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            color: const Color(0xffF8F8F8).withOpacity(.8),
+            color: provider.isDark()
+                ? const Color(0xff141A2E).withOpacity(.8)
+                : const Color(0xffF8F8F8).withOpacity(.8),
           ),
           child: Column(
             children: [
               Text(
                 '${data.title}  ',
-                style: theme.textTheme.bodyMedium,
+                style: theme.textTheme.bodyMedium?.copyWith(
+                  color:
+                      provider.isDark() ? theme.primaryColorDark : Colors.black,
+                ),
               ),
-              Divider(
-                color: theme.primaryColor,
-                thickness: 3,
-              ),
+              Divider(),
               Expanded(
                 child: ListView.builder(
                   itemBuilder: (context, index) => Text(
                       textAlign: TextAlign.center,
-                      style: theme.textTheme.bodyMedium?.copyWith(height: 1.8),
+                      style: theme.textTheme.bodyMedium?.copyWith(
+                        height: 1.8,
+                        color: provider.isDark()
+                            ? theme.primaryColorDark
+                            : Colors.black,
+                      ),
                       data.body),
                   itemCount: 1,
                 ),

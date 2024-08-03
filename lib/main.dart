@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/settings_provider.dart';
 import 'package:islamic_app/modules/LayOut/layout.dart';
 import 'package:islamic_app/core/Applications_Theme_Manager.dart';
 import 'package:islamic_app/modules/Splash/splash.dart';
 import 'package:islamic_app/modules/hadeth/hadithView.dart';
 import 'package:islamic_app/modules/quran/quran_details_view.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const IslamicApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => SettingsProvider(), child: IslamicApp()));
 }
 
 class IslamicApp extends StatelessWidget {
@@ -16,12 +18,15 @@ class IslamicApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: provider.currentThemeMode,
       theme: ApplicationsThemeManager.lightThemeManager,
+      darkTheme: ApplicationsThemeManager.darkThemeManager,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      locale: const Locale('en'),
+      locale: Locale(provider.currentLanaguageCode),
       initialRoute: '/',
       routes: {
         SplashView.routeName: (context) => const SplashView(),

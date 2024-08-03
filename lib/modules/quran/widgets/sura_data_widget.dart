@@ -1,6 +1,8 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:islamic_app/core/settings_provider.dart';
 import 'package:islamic_app/modules/quran/quran.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class SuraDataWidget extends StatelessWidget {
@@ -12,6 +14,7 @@ class SuraDataWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingsProvider>(context);
     var theme = Theme.of(context);
     return Row(
       children: [
@@ -26,7 +29,8 @@ class SuraDataWidget extends StatelessWidget {
           height: 60,
           child: VerticalDivider(
             thickness: 3,
-            color: theme.primaryColor,
+            color:
+                provider.isDark() ? theme.primaryColorDark : theme.primaryColor,
           ),
         ),
         Expanded(
